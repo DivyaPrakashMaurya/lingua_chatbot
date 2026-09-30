@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#111414" />
+    <meta
+      name="description"
+      content="Lingua — a context-aware multilingual conversation workspace."
+    />
+    <title>Lingua — A little more understanding.</title>
+    <script src="/static/theme.js"></script>
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/themes.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="/" aria-label="Lingua home"
+          ><span class="brand-mark">l<span>·</span></span
+          >lingua<span class="brand-period">.</span></a
+        >
+        <button class="new-chat" id="new-chat">
+          <span>＋</span> New conversation <kbd>N</kbd>
+        </button>
+        <div class="section-label">YOUR SPACE <span>01</span></div>
+        <button class="nav-item selected" id="workspace-link">
+          <span>◫</span> Conversations
+        </button>
+        <div class="history-heading section-label">
+          RECENT
+          <button id="refresh" aria-label="Refresh conversations">↻</button>
+        </div>
+        <div id="history" class="history">
+          <p class="muted">Your conversations will appear here.</p>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="context-note">
+            <span class="tiny-symbol">✳</span
+            ><strong>A little more understanding.</strong>
+            <p>Different languages.<br />One continuous conversation.</p>
+          </div>
+          <button id="about-button" class="profile">
+            <span class="avatar">Y</span
+            ><span>Your workspace<small>Local & personal</small></span
+            ><span class="profile-settings">⚙</span>
+          </button>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div class="breadcrumb">
+            <button
+              id="menu-toggle"
+              class="icon-button mobile-only"
+              aria-label="Toggle sidebar"
+            >
+              ☰</button
+            ><span>Workspace</span><span class="slash">/</span
+            ><strong id="chat-title">New conversation</strong>
+          </div>
+          <div class="header-actions">
+            <label class="theme-control" for="theme-select">
+              <span class="theme-dot" aria-hidden="true"></span>
+              <span class="sr-only">Color theme</span>
+              <select id="theme-select" title="Choose color theme">
+                <option value="forest">Forest</option>
+                <option value="midnight">Midnight</option>
+                <option value="ocean">Ocean</option>
+                <option value="daylight">Daylight</option>
+              </select>
+            </label>
+            <span id="mode-badge" class="mode-badge">Connecting</span
+            ><button
+              id="insights-toggle"
+              class="icon-button"
+              aria-label="Toggle conversation insights"
+            >
+              ◧
+            </button>
+          </div>
+        </header>
+        <div class="work-area">
+          <section class="chat-pane">
+            <div class="chat-scroll" id="chat-scroll">
+              <section id="welcome" class="welcome">
+                <div class="eyebrow"><span></span> ROOM FOR EVERY LANGUAGE</div>
+                <h1>
+                  Good conversations<br />start with <em>understanding.</em>
+                </h1>
+                <p class="welcome-description">
+                  Think out loud. Switch languages. Pick up where you left
+                  off.<br />
+                  Meet your context-aware AI companion.
+                </p>
+                <div
+                  class="language-ribbon"
+                  aria-label="Hello in different languages"
+                >
+                  <span>Hello</span><span>नमस्ते</span><span>Hola</span
+                  ><span>Bonjour</span><span dir="rtl">مرحباً</span
+                  ><span>こんにちは</span>
+                </div>
+                <div class="suggestion-heading">
+                  <span>A PLACE TO START</span><span>Make it your own</span>
+                </div>
+                <div class="suggestions">
+                  <button
+                    data-prompt="Explain how a context-aware transformer chatbot works."
+                  >
+                    <span class="card-icon orange">✳</span
+                    ><strong>Make something click</strong>
+                    <p>Explain context-aware AI<br />in simple terms.</p>
+                    <span class="card-action">↗</span>
+                  </button>
+                  <button
+                    data-prompt="Translate ‘Good ideas can come from anywhere’ into Hindi, Spanish, and French."
+                  >
+                    <span class="card-icon blue">文</span
+                    ><strong>Cross a language barrier</strong>
+                    <p>
+                      One thought, expressed<br />in a few different languages.
+                    </p>
+                    <span class="card-action">↗</span>
+                  </button>
+                  <button
+                    data-prompt="Help me write a warm, professional introduction email to a new teammate."
+                  >
+                    <span class="card-icon green">✎</span
+                    ><strong>Find the right words</strong>
+                    <p>
+                      Turn a rough idea into<br />a thoughtful introduction.
+                    </p>
+                    <span class="card-action">↗</span>
+                  </button>
+                  <button
+                    data-prompt="Help me plan a seven-day learning path for Python and natural language processing."
+                  >
+                    <span class="card-icon violet">⌘</span
+                    ><strong>Untangle a new idea</strong>
+                    <p>
+                      Build a practical learning<br />plan, one step at a time.
+                    </p>
+                    <span class="card-action">↗</span>
+                  </button>
+                </div>
+              </section>
+              <div
+                id="messages"
+                class="messages"
+                role="log"
+                aria-live="polite"
+                aria-label="Conversation"
+              ></div>
+            </div>
+            <div class="composer-area">
+              <div id="error" class="error" role="alert" hidden></div>
+              <form id="chat-form" class="composer">
+                <label class="sr-only" for="message">Your message</label
+                ><textarea
+                  id="message"
+                  placeholder="What's on your mind?"
+                  rows="2"
+                  maxlength="4000"
+                ></textarea>
+                <div class="composer-bottom">
+                  <div class="composer-tools">
+                    <span class="language-icon">◎</span
+                    ><label class="sr-only" for="language">Reply language</label
+                    ><select id="language">
+                      <option value="auto">Auto-detect language</option></select
+                    ><span class="composer-divider"></span
+                    ><span class="memory-label">◈ Context on</span>
+                  </div>
+                  <div class="send-group">
+                    <span id="char-count">0 / 4000</span
+                    ><button id="send" type="submit" aria-label="Send message">
+                      ↑
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <div class="composer-caption">
+                <span
+                  >Enter to send <span class="caption-dot">·</span> Shift +
+                  Enter for a new line</span
+                ><span>AI can make mistakes. Stay curious.</span>
+              </div>
+            </div>
+          </section>
+          <aside class="insights" id="insights">
+            <div class="insights-heading">
+              <span>Conversation insights</span
+              ><span class="live-label">LIVE</span>
+            </div>
+            <p class="insights-description">
+              A little context goes a long way.
+            </p>
+            <div class="insight-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="orbit orbit-three"></div>
+              <div class="core">✳</div>
+              <span class="orbit-point point-one"></span
+              ><span class="orbit-point point-two"></span>
+            </div>
+            <div class="insight-section">
+              <div class="section-label">LANGUAGE</div>
+              <div class="insight-value">
+                <span id="detected-language">Listening for your words</span
+                ><span class="small-icon">文</span>
+              </div>
+              <p id="language-detail">
+                Write naturally. Choose a reply language below.
+              </p>
+            </div>
+            <div class="insight-section">
+              <div class="section-label">DETECTED INTENT</div>
+              <div id="intent-label" class="intent-pill">
+                Waiting for a message
+              </div>
+              <p id="intent-detail">Your intent helps shape the response.</p>
+              <div class="confidence-track">
+                <div id="confidence-bar"></div>
+              </div>
+            </div>
+            <div class="insight-section">
+              <div class="section-label">CONVERSATION MEMORY</div>
+              <div class="memory-metric">
+                <strong id="context-count">0</strong
+                ><span>messages in context</span>
+              </div>
+              <div id="memory-bars" class="memory-bars"></div>
+              <p id="context-detail">
+                A fresh start. Your next message begins the story.
+              </p>
+            </div>
+            <div class="model-note">
+              <span>◈</span>
+              <div>
+                <strong id="engine-title">Connecting to workspace</strong>
+                <p id="engine-detail">Checking your assistant settings…</p>
+              </div>
+            </div>
+            <button id="export" class="export-button">
+              ↓ Export conversation
+            </button>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <dialog id="about">
+      <button id="close-about" class="dialog-close" aria-label="Close settings">
+        ×</button
+      ><span class="eyebrow">YOUR WORKSPACE</span>
+      <h2>Made for your train of thought.</h2>
+      <p>
+        Lingua saves conversations in a local SQLite database and carries recent
+        messages into each new reply.
+      </p>
+      <p id="settings-info"></p>
+      <p>Choose Forest, Midnight, Ocean, or Daylight from the color theme menu in the top bar. Your choice is saved in this browser.</p>
+      <p>
+        Configure models in <code>.env</code> and restart the server. API
+        documentation is available at
+        <a href="/docs" target="_blank" rel="noopener">/docs</a>.
+      </p>
+      <small
+        >This personal workspace has no account system. Keep the server on
+        localhost.</small
+      >
+    </dialog>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>

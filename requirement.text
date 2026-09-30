@@ -1,0 +1,3 @@
+# Compatibility file; the conventional Python filename is requirements.txt.
+# Install with: pip install -r requirement.text
+-r requirements-ml.txt

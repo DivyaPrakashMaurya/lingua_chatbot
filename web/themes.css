@@ -1,0 +1,129 @@
+/* Theme palettes: add tokens here to keep all surfaces and controls in sync. */
+:root {
+  --raised: #252c24;
+  --on-accent: #22251f;
+  --secondary: #b7c9a9;
+  --error-bg: #422d27;
+  --error-text: #f0bcab;
+  --error-border: #a07665;
+}
+:root[data-theme="midnight"] {
+  color-scheme: dark;
+  --bg: #141321;
+  --sidebar: #1b192c;
+  --surface: #211e35;
+  --raised: #302a49;
+  --border: #423b59;
+  --text: #f2efff;
+  --muted: #b4acc9;
+  --accent: #c3a6ff;
+  --secondary: #b7bfff;
+  --on-accent: #25183d;
+}
+:root[data-theme="ocean"] {
+  color-scheme: dark;
+  --bg: #0b1922;
+  --sidebar: #10222e;
+  --surface: #152c38;
+  --raised: #1d3c49;
+  --border: #315565;
+  --text: #ecf7fb;
+  --muted: #9dbfce;
+  --accent: #69d9d0;
+  --secondary: #9ecfff;
+  --on-accent: #0b3035;
+}
+:root[data-theme="daylight"] {
+  color-scheme: light;
+  --bg: #f4f6fa;
+  --sidebar: #ffffff;
+  --surface: #ffffff;
+  --raised: #e5ebf5;
+  --border: #c4cddd;
+  --text: #1e2c43;
+  --muted: #52627b;
+  --accent: #345bbb;
+  --secondary: #316668;
+  --on-accent: #ffffff;
+  --error-bg: #fff0eb;
+  --error-text: #8b2c19;
+  --error-border: #c77f70;
+}
+
+.theme-control {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 5px 8px;
+  flex-shrink: 0;
+}
+.theme-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.theme-control select {
+  color: var(--text);
+  background: var(--surface);
+  border: 0;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 0;
+  max-width: 100px;
+}
+.header-actions { flex-shrink: 0; gap: 12px; }
+.breadcrumb { flex: 1; overflow: hidden; margin-right: 12px; }
+
+/* Replace the original fixed colors across both chat and empty states. */
+.new-chat, .brand-mark, .message.assistant .message-avatar, #send {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.new-chat kbd { border-color: currentColor; }
+.nav-item.selected, .history-row.active, .avatar, .message-avatar, .core,
+.intent-pill, .model-note, .confidence-track, .memory-bars span {
+  background: var(--raised);
+  color: var(--secondary);
+}
+.suggestions button, .composer, dialog {
+  background: var(--surface);
+  border-color: var(--border);
+}
+.insights { background: var(--sidebar); }
+.composer select option { background: var(--surface); }
+.composer:focus-within, .suggestions button:hover { border-color: var(--accent); }
+.orbit, .live-label, .mode-badge, .intent-pill, .model-note { border-color: var(--border); }
+.composer-divider { background: var(--border); }
+.confidence-track > div, .memory-bars span.filled, .orbit-point { background: var(--secondary); }
+.point-two { background: var(--accent); }
+.section-label, .section-label > span, .insight-section .section-label,
+.context-note p, .history-open, .history-delete, .breadcrumb strong, .slash,
+.icon-button, .eyebrow, .welcome-description, .language-ribbon,
+.suggestion-heading, .suggestion-heading > span + span, .suggestions p,
+.card-action, .composer-tools, .composer select, .memory-label, #char-count,
+.composer-caption, .insights-description, .insight-section p,
+.memory-metric span, .model-note p, .export-button, .message-name small,
+.copy-message, dialog p, dialog small {
+  color: var(--muted);
+}
+.language-ribbon span:nth-child(2), .orange { color: var(--accent); }
+.language-ribbon span:nth-child(3), .blue, .violet { color: var(--secondary); }
+.language-ribbon span:nth-child(4), .green, .small-icon, .memory-metric strong,
+.pending, .live-label, .mode-badge { color: var(--secondary); }
+.message-content, .message.user .message-content { color: var(--text); }
+.composer textarea::placeholder { color: var(--muted); }
+.error { background: var(--error-bg); color: var(--error-text); border-color: var(--error-border); }
+
+@media (max-width: 800px) {
+  .header-actions { gap: 6px; }
+  .theme-control { padding: 4px 6px; gap: 4px; }
+  .breadcrumb strong { max-width: none; }
+}
+@media (max-width: 480px) {
+  .mode-badge { display: none; }
+  .theme-control select { font-size: 12px; }
+}
